@@ -18,12 +18,6 @@
       "sourceType": "github",
       "skillPath": "skills/next-partial-prefetching-adoption/SKILL.md",
       "computedHash": "cfed44cfce68b08b2a7edf3d6f07b230a49dfbf180825ca49a5bbf12b27a558a"
-    },
-    "sanity-live-cache-components": {
-      "source": "sanity-io/next-sanity",
-      "sourceType": "github",
-      "skillPath": "skills/sanity-live-cache-components/SKILL.md",
-      "computedHash": "6ca6b6034d8f297b6984794480686a1b67badf8e7b157b8634751d4f4d263894"
     }
   }
 }

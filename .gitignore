@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+/.open-next/
+/.wrangler/
 
 # production
 /build
@@ -37,6 +39,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.dev.vars*
 
 # vercel
 .vercel
@@ -48,7 +51,3 @@ yarn-error.log*
 .env
 studio/.env.development
 next-env.d.ts
-
-# Sanity Blueprints stack binding (written by `sanity blueprints init`) and function build output
-.sanity/
-/functions/*/.build

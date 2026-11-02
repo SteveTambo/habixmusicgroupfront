@@ -1,51 +1,31 @@
 {
-  "name": "sanity-template-template-nextjs-personal-website",
+  "name": "habix-music-group",
   "private": true,
   "scripts": {
     "analyze": "next experimental-analyze --serve",
-    "prebuild": "npm run stega-warn",
-    "build": "next build --turbopack && sanity manifest extract --path public/studio/static",
-    "predev": "npm run typegen && npm run stega-warn",
+    "build": "next build --turbopack",
+    "cf:build": "opennextjs-cloudflare build",
+    "cf:deploy": "opennextjs-cloudflare deploy",
+    "cf:preview": "opennextjs-cloudflare preview",
+    "cf:upload": "opennextjs-cloudflare upload",
     "dev": "next --turbopack",
     "format": "oxfmt",
     "lint": "oxlint",
     "lint:fix": "npm run format && oxlint --fix",
     "prepare": "next typegen",
     "start": "next start",
-    "stega-warn": "echo 'This template is using stega to embed Content Source Maps, see more information here: https://www.sanity.io/docs/loaders-and-overlays#26cf681fadd4'",
     "test:e2e": "playwright test",
-    "type-check": "tsc --noEmit",
-    "typegen": "sanity schema extract --force && sanity typegen generate"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@next/env": "16.4.2",
-    "@sanity/client": "8.10.1",
-    "@sanity/functions": "1.10.1",
-    "@sanity/icons": "5.2.3",
-    "@sanity/image-url": "2.1.1",
-    "@sanity/ui": "4.4.10",
-    "@sanity/util": "6.20.0",
-    "@sanity/vision": "6.20.0",
-    "@tailwindcss/typography": "0.5.20",
-    "@vercel/speed-insights": "2.0.0",
-    "classnames": "2.5.1",
-    "date-fns": "4.4.0",
     "next": "16.4.2",
-    "next-sanity": "13.3.4",
     "react": "19.3.1",
-    "react-dom": "19.3.1",
-    "react-live-transitions": "0.2.0",
-    "rxjs": "7.8.2",
-    "sanity": "6.20.0",
-    "sanity-plugin-asset-source-unsplash": "7.0.29",
-    "server-only": "0.0.1",
-    "sonner": "2.0.8",
-    "styled-components": "6.6.0"
+    "react-dom": "19.3.1"
   },
   "devDependencies": {
     "@next/playwright": "16.4.2",
+    "@opennextjs/cloudflare": "^1.20.15",
     "@playwright/test": "1.64.1",
-    "@sanity/blueprints": "0.28.0",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "25.9.9",
     "@types/react": "19.3.0",
@@ -55,6 +35,15 @@
     "oxlint-tsgolint": "7.0.2004",
     "postcss": "8.5.31",
     "tailwindcss": "4.3.3",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "wrangler": "^4.156.2"
+  },
+  "overrides": {
+    "@opennextjs/cloudflare": {
+      "glob": "14.0.3"
+    },
+    "@node-minify/core": {
+      "glob": "14.0.3"
+    }
   }
 }

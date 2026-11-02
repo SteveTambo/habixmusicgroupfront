@@ -28,7 +28,6 @@
     "next-env.d.ts",
     "public/",
     "node_modules/",
-    "sanity.types.ts",
     "test-results/",
     "playwright-report/"
   ],

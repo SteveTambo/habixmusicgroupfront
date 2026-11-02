@@ -1,162 +1,81 @@
-import {SpeedInsights} from '@vercel/speed-insights/next'
-import type {Metadata, Viewport} from 'next'
-import {defineQuery} from 'next-sanity'
-import {VisualEditing} from 'next-sanity/visual-editing'
-import {draftMode} from 'next/headers'
-import {Suspense} from 'react'
-import {Toaster} from 'sonner'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import {CustomPortableText} from '@/components/CustomPortableText'
-import {DraftModeProvider} from '@/components/DraftModeContext'
-import {Navbar} from '@/components/Navbar'
-import IntroTemplate from '@/intro-template'
-import {
-  getDynamicFetchOptions,
-  liveWaitFor,
-  sanityFetch,
-  sanityFetchMetadata,
-  SanityLive,
-  type DynamicFetchOptions,
-} from '@/sanity/lib/live'
-import {settingsQuery} from '@/sanity/lib/queries'
-import {urlForOpenGraphImage} from '@/sanity/lib/utils'
+import WalletConnect from './WalletConnect'
 
-import {handleError} from './client-functions'
-import {DraftModeToast} from './DraftModeToast'
-
-export async function generateMetadata(): Promise<Metadata> {
-  const {perspective} = await getDynamicFetchOptions()
-  const layoutMetadataQuery = defineQuery(`{
-    "settings": *[_type == "settings"][0]{ogImage},
-    "home": *[_type == "home"][0]{
-      title,
-      "overview": pt::text(overview),
-    }
-  }`)
-  const {
-    data: {settings, home},
-  } = await sanityFetchMetadata({query: layoutMetadataQuery, perspective})
-
-  const ogImage = urlForOpenGraphImage(settings?.ogImage)
-  return {
-    title: home?.title
-      ? {template: `%s | ${home.title}`, default: home.title || 'Personal website'}
-      : undefined,
-    description: home?.overview,
-    openGraph: {images: ogImage ? [ogImage] : []},
-  }
-}
-
-export const viewport: Viewport = {themeColor: '#000'}
-
-export default async function PersonalLayout({children}: LayoutProps<'/'>) {
-  const {isEnabled: isDraftMode} = await draftMode()
+export default function WebsiteLayout({children}: LayoutProps<'/'>) {
   return (
-    <DraftModeProvider isDraftMode={isDraftMode}>
-      <div className="flex min-h-screen flex-col bg-white text-black">
-        {isDraftMode ? (
-          <Suspense fallback={<NavbarFallback />}>
-            <DynamicNavbar />
-          </Suspense>
-        ) : (
-          <CachedNavbar perspective="published" stega={false} />
-        )}
-        <div className="mt-20 grow px-4 md:px-16 lg:px-32">{children}</div>
-        {isDraftMode ? (
-          <Suspense>
-            <DynamicFooter />
-          </Suspense>
-        ) : (
-          <CachedFooter perspective="published" stega={false} />
-        )}
-        <Suspense>
-          <IntroTemplate />
-        </Suspense>
-      </div>
-      <Toaster />
-      <SanityLive onError={handleError} includeDrafts={isDraftMode} waitFor={liveWaitFor} />
-      {isDraftMode && (
-        <>
-          <DraftModeToast
-            action={async () => {
-              'use server'
+    <div className="flex min-h-screen flex-col bg-white text-black">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-habix-ink text-white">
+        <nav
+          aria-label="Main navigation"
+          className="relative mx-auto flex w-full max-w-[100rem] items-center gap-3 px-4 py-2 md:gap-5 md:px-16 md:py-3 lg:px-32"
+        >
+          <Link aria-label="Habix Music Group home" className="shrink-0" href="/">
+            <Image
+              alt="Habix Music Group"
+              className="h-auto w-[76px] md:w-[104px]"
+              height={915}
+              loading="eager"
+              sizes="(max-width: 768px) 76px, 104px"
+              src="/habix-logo-ink.png"
+              width={1512}
+            />
+          </Link>
+          <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1.5 text-[11px] md:flex lg:gap-5 lg:text-base">
+            <Link
+              className="text-white/75 transition hover:text-habix-coral"
+              href="/#sound"
+            >
+              What we do
+            </Link>
+            <Link
+              className="text-white/75 transition hover:text-habix-coral"
+              href="/#labels"
+            >
+              Labels
+            </Link>
+            <Link
+              className="text-white/75 transition hover:text-habix-coral"
+              href="/#playlists"
+            >
+              Playlists
+            </Link>
+            <Link
+              className="text-white/75 transition hover:text-habix-coral"
+              href="/#about"
+            >
+              About
+            </Link>
+          </div>
+          <div className="ml-auto">
+            <WalletConnect />
+          </div>
+        </nav>
+      </header>
 
-              const draft = await draftMode()
-              draft.disable()
-              // Simulate a delay to show the loading state
-              await new Promise((resolve) => setTimeout(resolve, 1000))
-            }}
-          />
-          <VisualEditing />
-        </>
-      )}
-      <SpeedInsights />
-    </DraftModeProvider>
-  )
-}
+      <main className="w-full grow">{children}</main>
 
-/**
- * Shared cache leaf — both the navbar and footer derive from the same `settingsQuery`, so
- * neither has to wait independently for the same data.
- */
-async function fetchSettings({perspective, stega}: DynamicFetchOptions) {
-  'use cache'
-  const {data} = await sanityFetch({query: settingsQuery, perspective, stega})
-  return data
-}
-
-async function DynamicNavbar() {
-  const {perspective, stega} = await getDynamicFetchOptions()
-  return <CachedNavbar perspective={perspective} stega={stega} />
-}
-
-async function CachedNavbar({perspective, stega}: DynamicFetchOptions) {
-  'use cache'
-  const data = await fetchSettings({perspective, stega})
-  return <Navbar data={data} />
-}
-
-/**
- * Mirrors the real `<Navbar>` shell so the static fallback occupies the same vertical space.
- * Width of the placeholder link is arbitrary — height is what matters to avoid layout shift.
- */
-function NavbarFallback() {
-  return (
-    <header
-      aria-busy
-      className="sticky top-0 z-10 flex flex-wrap items-center gap-x-5 bg-white/80 px-4 py-4 backdrop-blur-sm md:px-16 md:py-5 lg:px-32"
-      data-testid="site-header"
-    >
-      <span className="text-lg md:text-xl" aria-hidden>
-        <span className="inline-block h-[1em] w-24 animate-pulse rounded bg-gray-200 align-middle md:w-32" />
-      </span>
-    </header>
-  )
-}
-
-async function DynamicFooter() {
-  const {perspective, stega} = await getDynamicFetchOptions()
-  return <CachedFooter perspective={perspective} stega={stega} />
-}
-
-async function CachedFooter({perspective, stega}: DynamicFetchOptions) {
-  'use cache'
-  const data = await fetchSettings({perspective, stega})
-  if (!Array.isArray(data?.footer)) {
-    return null
-  }
-  return (
-    <footer
-      className="bottom-0 w-full bg-white py-12 text-center md:py-20"
-      data-testid="site-footer"
-    >
-      <CustomPortableText
-        id={data._id}
-        type={data._type}
-        path={['footer']}
-        paragraphClasses="text-md md:text-xl"
-        value={data.footer}
-      />
-    </footer>
+      <footer className="bg-habix-ink text-white">
+        <div className="mx-auto flex w-full max-w-[100rem] flex-col gap-4 px-4 py-5 md:flex-row md:items-center md:justify-between md:px-16 md:py-10 lg:px-32">
+          <Link aria-label="Habix Music Group home" className="w-fit" href="/">
+            <Image
+              alt="Habix Music Group"
+              className="h-auto w-[92px]"
+              height={915}
+              sizes="92px"
+              src="/habix-logo-ink.png"
+              width={1512}
+            />
+          </Link>
+          <Link className="text-sm font-medium transition hover:text-habix-coral" href="/#labels">
+            Explore our labels <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+        <div className="border-t border-white/15 px-4 py-4 text-center text-xs text-white/55">
+          © 2024 Habix Music Group. All rights reserved.
+        </div>
+      </footer>
+    </div>
   )
 }

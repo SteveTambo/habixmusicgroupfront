@@ -1,13 +1,8 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
-/* Carries the `@tailwindcss/typography` theme, which the plugin only reads from a JS config. */
-@config '../tailwind.config.js';
 
 /*
- * Design tokens vendored from `@sanity/demo/tailwind` (package version 2.0.0, MIT,
- * github.com/sanity-io/demo). `initial` resets replace Tailwind's default scale for that
- * namespace, mirroring the original config's non-`extend` keys; the spacing steps extend the
- * default multiplier-based scale (`--spacing`), so `p-10` and up keep their default values.
+ * The `initial` resets replace Tailwind's default scale for that namespace; spacing steps extend
+ * the default multiplier-based scale so `p-10` and up keep their default values.
  */
 @theme {
   --radius-*: initial;
@@ -29,6 +24,8 @@
   --color-*: initial;
   --color-white: #ffffff;
   --color-black: #0d0e12;
+  --color-habix-ink: #0d0e12;
+  --color-habix-coral: #ff6464;
 
   --color-gray-50: #f6f6f8;
   --color-gray-100: #eeeef1;
