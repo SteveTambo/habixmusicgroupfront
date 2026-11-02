@@ -18,6 +18,22 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
   await expect(page.getByRole('heading', {name: 'Three labels. One independent vision.'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'VIP Women’s Club'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'Playlists for the journey.'})).toBeVisible()
+  await expect(page.getByRole('img', {name: '1912 CA cover artwork'})).toBeVisible()
+  const gagaLink = page.getByRole('link', {name: 'Listen to GAGA on Spotify'})
+  await expect(gagaLink).toHaveAttribute(
+    'href',
+    'https://open.spotify.com/album/0qhxJzZYffPHSSzgOYth6C',
+  )
+  await expect(
+    gagaLink.getByRole('img', {
+      name: 'Black-and-white portrait of a musician wearing a VIP Women’s Club shirt',
+    }),
+  ).toBeVisible()
+  await expect(page.locator('a:has(img[alt="1912 CA cover artwork"])')).toHaveCount(0)
+  await expect(page.getByRole('link', {name: 'Listen to Matriarch on Spotify'})).toHaveAttribute(
+    'href',
+    'https://open.spotify.com/album/3zYQw9LGAltIr14AL8z8cm',
+  )
   await expect(page.locator('iframe[title^="Spotify playlist:"]')).toHaveCount(2)
   await expect(page.getByRole('link', {name: 'Open in Spotify'})).toHaveCount(2)
 

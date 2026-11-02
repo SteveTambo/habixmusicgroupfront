@@ -9,15 +9,15 @@ export default function WebsiteLayout({children}: LayoutProps<'/'>) {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-habix-ink text-white">
         <nav
           aria-label="Main navigation"
-          className="relative mx-auto flex w-full max-w-[100rem] items-center gap-3 px-4 py-2 md:gap-5 md:px-16 md:py-3 lg:px-32"
+          className="relative mx-auto flex w-full max-w-[100rem] items-center gap-3 px-4 py-1 md:gap-5 md:px-16 md:py-2 lg:px-32"
         >
           <Link aria-label="Habix Music Group home" className="shrink-0" href="/">
             <Image
               alt="Habix Music Group"
-              className="h-auto w-[76px] md:w-[104px]"
+              className="h-auto w-[68px] md:w-[88px]"
               height={915}
               loading="eager"
-              sizes="(max-width: 768px) 76px, 104px"
+              sizes="(max-width: 768px) 68px, 88px"
               src="/habix-logo-ink.png"
               width={1512}
             />

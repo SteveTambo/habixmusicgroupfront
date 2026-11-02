@@ -144,10 +144,16 @@ export default function IndexPage() {
               aria-hidden="true"
               className="absolute -inset-8 rounded-full bg-habix-coral/10 blur-3xl"
             />
-            <div className="relative rotate-[-3deg] overflow-hidden rounded-2xl shadow-2xl shadow-black/20 transition duration-500 hover:rotate-0">
+            <Link
+              aria-label="Listen to GAGA on Spotify"
+              className="group relative block rotate-[-3deg] overflow-hidden rounded-2xl shadow-2xl shadow-black/20 transition duration-500 hover:rotate-0"
+              href="https://open.spotify.com/album/0qhxJzZYffPHSSzgOYth6C"
+              rel="noreferrer"
+              target="_blank"
+            >
               <Image
                 alt="Black-and-white portrait of a musician wearing a VIP Women’s Club shirt"
-                className="aspect-square h-auto w-full object-cover"
+                className="aspect-square h-auto w-full object-cover transition duration-300 group-hover:scale-105"
                 height={3000}
                 loading="eager"
                 quality={90}
@@ -155,7 +161,10 @@ export default function IndexPage() {
                 src="/vip-womens-club-artist.jpg"
                 width={3000}
               />
-            </div>
+              <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/85 to-transparent px-5 pt-14 pb-5 text-sm font-bold text-white">
+                Listen to GAGA <span aria-hidden="true">↗</span>
+              </span>
+            </Link>
             <div className="absolute -right-1 bottom-2 rotate-3 rounded-full border border-white/25 bg-habix-ink px-4 py-2 text-xs font-semibold tracking-[0.12em] text-white uppercase md:right-0 md:bottom-4">
               Nairobi · Est. 2024
             </div>
@@ -356,17 +365,26 @@ export default function IndexPage() {
         className="scroll-mt-24 bg-[#f5f4f0] px-4 py-20 md:px-16 md:py-28 lg:px-32"
       >
         <div className="mx-auto grid max-w-[100rem] gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center md:gap-20">
-          <div className="relative mx-auto w-full max-w-[460px] overflow-hidden rounded-2xl">
+          <Link
+            aria-label="Listen to Matriarch on Spotify"
+            className="group relative mx-auto block w-full max-w-[460px] overflow-hidden rounded-2xl"
+            href="https://open.spotify.com/album/3zYQw9LGAltIr14AL8z8cm"
+            rel="noreferrer"
+            target="_blank"
+          >
             <Image
               alt="Matriarch CA artist portrait"
-              className="aspect-square h-auto w-full object-cover"
+              className="aspect-square h-auto w-full object-cover transition duration-300 group-hover:scale-105"
               height={3000}
               quality={90}
               sizes="(max-width: 768px) 90vw, 460px"
               src="/matriarch-ca.jpg"
               width={3000}
             />
-          </div>
+            <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/85 to-transparent px-5 pt-14 pb-5 text-sm font-bold text-white">
+              Listen to Matriarch <span aria-hidden="true">↗</span>
+            </span>
+          </Link>
           <div>
             <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-habix-ink uppercase">
               Our point of view
@@ -411,7 +429,7 @@ export default function IndexPage() {
         aria-labelledby="ambition-title"
         className="scroll-mt-24 bg-habix-coral px-4 py-20 md:px-16 md:py-28 lg:px-32"
       >
-        <div className="mx-auto grid max-w-[100rem] gap-5 md:grid-cols-[1fr_auto] md:items-end">
+        <div className="mx-auto grid max-w-[100rem] gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-center xl:gap-16">
           <div>
             <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-black/60 uppercase">
               From Nairobi to the global stage
@@ -428,12 +446,25 @@ export default function IndexPage() {
               independent music companies.
             </p>
           </div>
-          <Link
-            className="inline-flex w-fit items-center gap-3 border-b-2 border-black pb-2 text-lg font-bold transition hover:gap-5"
-            href="#labels"
-          >
-            Meet our labels <span aria-hidden="true">↗</span>
-          </Link>
+          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end xl:flex-col xl:items-end">
+            <div className="w-full max-w-[360px] overflow-hidden rounded-sm border border-black/10 shadow-xl shadow-black/15">
+              <Image
+                alt="1912 CA cover artwork"
+                className="aspect-square h-auto w-full object-cover"
+                height={3000}
+                quality={90}
+                sizes="(max-width: 640px) 90vw, (max-width: 1280px) 45vw, 360px"
+                src="/1912-ca-cover.jpg"
+                width={3000}
+              />
+            </div>
+            <Link
+              className="inline-flex w-fit items-center gap-3 border-b-2 border-black pb-2 text-lg font-bold transition hover:gap-5"
+              href="#labels"
+            >
+              Meet our labels <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </div>
       </section>
     </>
