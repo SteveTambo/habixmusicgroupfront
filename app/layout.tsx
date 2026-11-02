@@ -1,20 +1,27 @@
 import './globals.css'
 import type {Metadata} from 'next'
 import {IBM_Plex_Mono, Inter, PT_Serif} from 'next/font/google'
-
-const siteTitle = 'Habix Music Group | Independent Music & Entertainment'
-const siteDescription =
-  'An independent music and entertainment company spanning recorded music, artist development, merchandising, and audiovisual production. From Nairobi to Africa and beyond.'
+import {siteDescription, siteName, siteTitle, siteUrl} from './site'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://music.habixgroup.top'),
+  metadataBase: new URL(siteUrl),
+  applicationName: siteName,
   title: siteTitle,
   description: siteDescription,
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: 'website',
-    siteName: 'Habix Music Group',
+    siteName,
     title: siteTitle,
     description: siteDescription,
+    url: siteUrl,
+    locale: 'en_KE',
     images: [
       {
         url: '/habix-logo-ink.png',

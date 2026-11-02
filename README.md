@@ -34,6 +34,10 @@ Wrangler will create the custom-domain DNS record and certificate for `music.hab
 
 The HBX balance reads the devnet token account from Solana's public devnet RPC. Do not put private RPC credentials or other secrets in `NEXT_PUBLIC_*` variables.
 
+## Search visibility
+
+The site publishes canonical and social-sharing metadata, Organization structured data, and crawlable `/robots.txt` and `/sitemap.xml` routes for `music.habixgroup.top`. Submit the sitemap in Google Search Console and Bing Webmaster Tools after deployment.
+
 ## Validation
 
 ```sh

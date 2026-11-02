@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import {siteName, siteUrl} from '../site'
 
 // Spotify's cross-origin embed needs allow-same-origin for its playback postMessage calls.
 /* oxlint-disable react/iframe-missing-sandbox */
@@ -66,6 +67,34 @@ const playlists = [
 export default function IndexPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: siteName,
+            alternateName: 'HMG',
+            url: siteUrl,
+            logo: `${siteUrl}/habix-logo-ink.png`,
+            description:
+              'An independent music and entertainment company based in Nairobi, Kenya, working across recorded music, artist development, merchandising, audiovisual production, and brand partnerships.',
+            foundingDate: '2024',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Nairobi',
+              addressCountry: 'KE',
+            },
+            knowsAbout: [
+              'Recorded music',
+              'Artist development',
+              'Music merchandising',
+              'Audiovisual production',
+              'Music brand partnerships',
+            ],
+          }).replace(/</g, '\\u003c'),
+        }}
+      />
       <section className="overflow-hidden bg-habix-ink text-white">
         <div className="mx-auto grid min-h-[min(82vh,820px)] max-w-[100rem] items-center gap-10 px-4 py-14 md:grid-cols-[1.05fr_0.95fr] md:px-16 md:py-20 lg:px-32">
           <div className="relative z-10">
