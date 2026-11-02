@@ -5,6 +5,23 @@ import {siteName, siteUrl} from '../site'
 // Spotify's cross-origin embed needs allow-same-origin for its playback postMessage calls.
 /* oxlint-disable react/iframe-missing-sandbox */
 
+function VinylIcon({className}: {className: string}) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="24" cy="24" r="15" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="24" cy="24" r="10" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="24" cy="24" r="3" fill="currentColor" />
+    </svg>
+  )
+}
+
 const disciplines = [
   {
     number: '01',
@@ -12,7 +29,7 @@ const disciplines = [
     description:
       'From recording and original releases to music distribution, we grow a multi-genre catalogue for audiences across Africa and beyond.',
     detail: 'Create and release',
-    symbol: '✳',
+    symbol: 'vinyl',
     color: 'bg-[#f5e9e4]',
   },
   {
@@ -30,7 +47,7 @@ const disciplines = [
     description:
       'Turning music and creative identity into merchandise that brings artists closer to their audiences.',
     detail: 'Bring the brand to life',
-    symbol: '✳',
+    symbol: 'vinyl',
     color: 'bg-[#f2eddb]',
   },
   {
@@ -48,7 +65,7 @@ const disciplines = [
     description:
       'Creative partnerships that connect artists, brands, and audiences through culture.',
     detail: 'Build together',
-    symbol: '✳',
+    symbol: 'vinyl',
     color: 'bg-[#e6ede7]',
   },
 ]
@@ -192,7 +209,11 @@ export default function IndexPage() {
                     aria-hidden="true"
                     className="text-4xl text-habix-ink transition duration-300 group-hover:rotate-12"
                   >
-                    {discipline.symbol}
+                    {discipline.symbol === 'vinyl' ? (
+                      <VinylIcon className="h-10 w-10" />
+                    ) : (
+                      discipline.symbol
+                    )}
                   </span>
                 </div>
                 <div>
@@ -240,7 +261,7 @@ export default function IndexPage() {
             <article className="flex min-h-[260px] flex-col justify-between rounded-md bg-habix-coral p-5 text-black transition hover:-translate-y-1 md:min-h-[320px] md:p-8">
               <div className="flex items-start justify-between">
                 <span className="text-xs font-semibold tracking-[0.18em]">01 / KENYA</span>
-                <span aria-hidden="true" className="text-3xl">✳</span>
+                <VinylIcon className="h-8 w-8" />
               </div>
               <h3 className="max-w-sm text-3xl leading-tight font-extrabold tracking-[-0.05em] md:text-4xl">
                 VIP Women&rsquo;s Club
@@ -258,7 +279,7 @@ export default function IndexPage() {
             <article className="flex min-h-[260px] flex-col justify-between rounded-md bg-[#f2eddb] p-5 text-black transition hover:-translate-y-1 md:min-h-[320px] md:p-8">
               <div className="flex items-start justify-between">
                 <span className="text-xs font-semibold tracking-[0.18em]">03 / SOUTH AFRICA</span>
-                <span aria-hidden="true" className="text-3xl text-habix-ink">✳</span>
+                <VinylIcon className="h-8 w-8 text-habix-ink" />
               </div>
               <h3 className="max-w-sm text-3xl leading-tight font-extrabold tracking-[-0.05em] md:text-4xl">
                 Pitori Sound Syndicate
