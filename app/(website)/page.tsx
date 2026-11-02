@@ -1,11 +1,11 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import {siteName, siteUrl} from '../site'
+import Image from "next/image";
+import Link from "next/link";
+import { siteName, siteUrl } from "../site";
 
 // Spotify's cross-origin embed needs allow-same-origin for its playback postMessage calls.
 /* oxlint-disable react/iframe-missing-sandbox */
 
-function VinylIcon({className}: {className: string}) {
+function VinylIcon({ className }: { className: string }) {
   return (
     <svg
       aria-hidden="true"
@@ -19,67 +19,67 @@ function VinylIcon({className}: {className: string}) {
       <circle cx="24" cy="24" r="10" stroke="currentColor" strokeWidth="1.5" />
       <circle cx="24" cy="24" r="3" fill="currentColor" />
     </svg>
-  )
+  );
 }
 
 const disciplines = [
   {
-    number: '01',
-    title: 'Recorded music',
+    number: "01",
+    title: "Recorded music",
     description:
-      'From recording and original releases to music distribution, we grow a multi-genre catalogue for audiences across Africa and beyond.',
-    detail: 'Create and release',
-    symbol: 'vinyl',
-    color: 'bg-[#f5e9e4]',
+      "From recording and original releases to music distribution, we grow a catalogue spanning multiple genres for audiences across Africa and beyond.",
+    detail: "Create and release",
+    symbol: "vinyl",
+    color: "bg-[#f5e9e4]",
   },
   {
-    number: '02',
-    title: 'Artist development',
+    number: "02",
+    title: "Artist development",
     description:
-      'Discovering, developing, and championing exceptional talent as artists build distinctive identities and lasting careers.',
-    detail: 'Build your identity',
-    symbol: '◉',
-    color: 'bg-[#e7edef]',
+      "Discovering, developing, and championing exceptional talent as artists build distinctive identities and lasting careers.",
+    detail: "Build your identity",
+    symbol: "◉",
+    color: "bg-[#e7edef]",
   },
   {
-    number: '03',
-    title: 'Merchandising',
+    number: "03",
+    title: "Merchandising",
     description:
-      'Turning music and creative identity into merchandise that brings artists closer to their audiences.',
-    detail: 'Bring the brand to life',
-    symbol: 'vinyl',
-    color: 'bg-[#f2eddb]',
+      "Turning music and creative identity into merchandise that brings artists closer to their audiences.",
+    detail: "Bring the brand to life",
+    symbol: "vinyl",
+    color: "bg-[#f2eddb]",
   },
   {
-    number: '04',
-    title: 'Audiovisual production',
+    number: "04",
+    title: "Audiovisual production",
     description:
-      'Compelling audiovisual experiences that give original music new ways to connect and travel.',
-    detail: 'Tell the story',
-    symbol: '◉',
-    color: 'bg-[#e9e6f0]',
+      "Compelling audiovisual experiences that give original music new ways to connect and travel.",
+    detail: "Tell the story",
+    symbol: "◉",
+    color: "bg-[#e9e6f0]",
   },
   {
-    number: '05',
-    title: 'Brand partnerships',
+    number: "05",
+    title: "Brand partnerships",
     description:
-      'Creative partnerships that connect artists, brands, and audiences through culture.',
-    detail: 'Build together',
-    symbol: 'vinyl',
-    color: 'bg-[#e6ede7]',
+      "Creative partnerships that connect artists, brands, and audiences through culture.",
+    detail: "Build together",
+    symbol: "vinyl",
+    color: "bg-[#e6ede7]",
   },
-]
+];
 
 const playlists = [
   {
-    id: '6t5KdJynPmNtl5w3Cjge3U',
-    title: '4ever wavy',
+    id: "6t5KdJynPmNtl5w3Cjge3U",
+    title: "4ever wavy",
   },
   {
-    id: '2j02x8aOV6aB4Z1TWwrAJ6',
-    title: 'Deep in the tropics',
+    id: "2j02x8aOV6aB4Z1TWwrAJ6",
+    title: "Deep in the tropics",
   },
-]
+];
 
 export default function IndexPage() {
   return (
@@ -88,28 +88,28 @@ export default function IndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
+            "@context": "https://schema.org",
+            "@type": "Organization",
             name: siteName,
-            alternateName: 'HMG',
+            alternateName: "HMG",
             url: siteUrl,
             logo: `${siteUrl}/habix-logo-ink.png`,
             description:
-              'An independent music and entertainment company based in Nairobi, Kenya, working across recorded music, artist development, merchandising, audiovisual production, and brand partnerships.',
-            foundingDate: '2024',
+              "An independent music and entertainment company based in Nairobi, Kenya, working across recorded music, artist development, merchandising, audiovisual production, and brand partnerships.",
+            foundingDate: "2024",
             address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Nairobi',
-              addressCountry: 'KE',
+              "@type": "PostalAddress",
+              addressLocality: "Nairobi",
+              addressCountry: "KE",
             },
             knowsAbout: [
-              'Recorded music',
-              'Artist development',
-              'Music merchandising',
-              'Audiovisual production',
-              'Music brand partnerships',
+              "Recorded music",
+              "Artist development",
+              "Music merchandising",
+              "Audiovisual production",
+              "Music brand partnerships",
             ],
-          }).replace(/</g, '\\u003c'),
+          }).replace(/</g, "\\u003c"),
         }}
       />
       <section className="overflow-hidden bg-habix-ink text-white">
@@ -120,11 +120,13 @@ export default function IndexPage() {
               Independent music &amp; entertainment · Nairobi, Kenya
             </p>
             <h1 className="max-w-3xl text-5xl leading-[0.98] font-extrabold tracking-[-0.06em] md:text-7xl lg:text-8xl">
-              Independent music, <span className="text-habix-coral">global</span> ambition.
+              Independent music,{" "}
+              <span className="text-habix-coral">global</span> ambition.
             </h1>
             <p className="mt-5 max-w-xl font-serif text-lg leading-relaxed text-white/75 md:text-xl">
-              We bring labels, artists, and creative ventures together to shape the future of
-              independent music—from Nairobi to audiences across Africa and beyond.
+              We bring labels, artists, and creative ventures together to shape
+              the future of independent music, from Nairobi to audiences across
+              Africa and beyond.
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <Link
@@ -198,9 +200,10 @@ export default function IndexPage() {
               </h2>
             </div>
             <p className="max-w-lg font-serif text-lg leading-relaxed text-gray-600 md:justify-self-end">
-              From recorded music and artist development to merchandising, audiovisual production,
-              and brand partnerships, HMG brings the pieces together to help artists grow their
-              reach and create lasting value.
+              From recorded music and artist development to merchandising,
+              audiovisual production, and brand partnerships, HMG brings the
+              pieces together to help artists grow their reach and create
+              lasting value.
             </p>
           </div>
 
@@ -218,7 +221,7 @@ export default function IndexPage() {
                     aria-hidden="true"
                     className="text-4xl text-habix-ink transition duration-300 group-hover:rotate-12"
                   >
-                    {discipline.symbol === 'vinyl' ? (
+                    {discipline.symbol === "vinyl" ? (
                       <VinylIcon className="h-10 w-10" />
                     ) : (
                       discipline.symbol
@@ -257,19 +260,21 @@ export default function IndexPage() {
                 id="labels-title"
                 className="max-w-3xl text-4xl leading-tight font-extrabold tracking-[-0.05em] md:text-6xl"
               >
-                Three labels. One independent vision.
+                Multiple labels. One independent vision.
               </h2>
             </div>
             <p className="max-w-md font-serif text-lg leading-relaxed text-white/70">
-              Distinct label identities, connected by a commitment to creative excellence and
-              cultural impact.
+              Distinct label identities, connected by a commitment to creative
+              excellence and cultural impact.
             </p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
             <article className="flex min-h-[260px] flex-col justify-between rounded-md bg-habix-coral p-5 text-black transition hover:-translate-y-1 md:min-h-[320px] md:p-8">
               <div className="flex items-start justify-between">
-                <span className="text-xs font-semibold tracking-[0.18em]">01 / KENYA</span>
+                <span className="text-xs font-semibold tracking-[0.18em]">
+                  01 / KENYA
+                </span>
                 <VinylIcon className="h-8 w-8" />
               </div>
               <h3 className="max-w-sm text-3xl leading-tight font-extrabold tracking-[-0.05em] md:text-4xl">
@@ -278,8 +283,12 @@ export default function IndexPage() {
             </article>
             <article className="flex min-h-[260px] flex-col justify-between rounded-md bg-white p-5 text-black transition hover:-translate-y-1 md:min-h-[320px] md:p-8">
               <div className="flex items-start justify-between">
-                <span className="text-xs font-semibold tracking-[0.18em]">02 / KENYA</span>
-                <span aria-hidden="true" className="text-3xl text-habix-ink">◉</span>
+                <span className="text-xs font-semibold tracking-[0.18em]">
+                  02 / KENYA
+                </span>
+                <span aria-hidden="true" className="text-3xl text-habix-ink">
+                  ◉
+                </span>
               </div>
               <h3 className="max-w-sm text-3xl leading-tight font-extrabold tracking-[-0.05em] md:text-4xl">
                 DISTURB THE PEACE
@@ -287,7 +296,9 @@ export default function IndexPage() {
             </article>
             <article className="flex min-h-[260px] flex-col justify-between rounded-md bg-[#f2eddb] p-5 text-black transition hover:-translate-y-1 md:min-h-[320px] md:p-8">
               <div className="flex items-start justify-between">
-                <span className="text-xs font-semibold tracking-[0.18em]">03 / SOUTH AFRICA</span>
+                <span className="text-xs font-semibold tracking-[0.18em]">
+                  03 / SOUTH AFRICA
+                </span>
                 <VinylIcon className="h-8 w-8 text-habix-ink" />
               </div>
               <h3 className="max-w-sm text-3xl leading-tight font-extrabold tracking-[-0.05em] md:text-4xl">
@@ -397,19 +408,21 @@ export default function IndexPage() {
             </h2>
             <div className="mt-5 max-w-2xl space-y-4 font-serif text-lg leading-relaxed text-gray-600">
               <p>
-                Habix Music Group is an independent music and entertainment company at the
-                intersection of recorded music, artist development, merchandising, and audiovisual
-                production.
+                Habix Music Group is an independent music and entertainment
+                company at the intersection of recorded music, artist
+                development, merchandising, and audiovisual production.
               </p>
               <p>
-                Through our labels and creative partnerships, we discover, develop, and champion
-                exceptional talent—helping artists build distinctive identities, expand their
-                reach, and create lasting value from their work.
+                Through our labels and creative partnerships, we discover,
+                develop, and champion exceptional talent, helping artists build
+                distinctive identities, expand their reach, and create lasting
+                value from their work.
               </p>
               <p>
-                With a growing, multi-genre catalogue and a vision rooted in global ambition, we
-                combine creative independence, entrepreneurial thinking, and strategic execution
-                to compete on the world stage.
+                With a growing catalogue spanning multiple genres and a vision rooted in
+                global ambition, we combine creative independence,
+                entrepreneurial thinking, and strategic execution to compete on
+                the world stage.
               </p>
             </div>
             <div className="mt-5 flex items-center gap-4 border-t border-gray-300 pt-5">
@@ -441,9 +454,10 @@ export default function IndexPage() {
               Building the next generation of independent music.
             </h2>
             <p className="mt-4 max-w-xl font-serif text-lg leading-relaxed text-black/70">
-              We&rsquo;re committed to discovering influential artists, developing enduring music
-              brands, and building one of the world&rsquo;s most commercially successful
-              independent music companies.
+              We&rsquo;re committed to discovering influential artists,
+              developing enduring music brands, and building one of the
+              world&rsquo;s most commercially successful independent music
+              companies.
             </p>
           </div>
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end xl:flex-col xl:items-end">
@@ -462,11 +476,11 @@ export default function IndexPage() {
               className="inline-flex w-fit items-center gap-3 border-b-2 border-black pb-2 text-lg font-bold transition hover:gap-5"
               href="#labels"
             >
-              Meet our labels <span aria-hidden="true">↗</span>
+              Our labels <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }
