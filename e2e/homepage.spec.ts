@@ -13,11 +13,37 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
     'https://music.habixgroup.top',
   )
   const organizationData = await page.locator('script[type="application/ld+json"]').textContent()
-  expect(organizationData).toContain('"@type":"Organization"')
+  const structuredData = JSON.parse(organizationData ?? '{}')
+  expect(structuredData['@graph']).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({'@type': 'Organization'}),
+      expect.objectContaining({
+        '@type': 'ItemList',
+        itemListElement: expect.arrayContaining([
+          expect.objectContaining({
+            item: expect.objectContaining({
+              '@type': 'MusicPlaylist',
+              name: '4EVER WAVY 🌊',
+              url: 'https://open.spotify.com/playlist/6t5KdJynPmNtl5w3Cjge3U',
+            }),
+          }),
+          expect.objectContaining({
+            item: expect.objectContaining({
+              '@type': 'MusicPlaylist',
+              name: 'DEEP IN THE TROPICS',
+              url: 'https://open.spotify.com/playlist/2j02x8aOV6aB4Z1TWwrAJ6',
+            }),
+          }),
+        ]),
+      }),
+    ]),
+  )
   await expect(page.getByRole('heading', {name: 'Independent music, global ambition.'})).toBeVisible()
-  await expect(page.getByRole('heading', {name: 'Three labels. One independent vision.'})).toBeVisible()
+  await expect(page.getByRole('heading', {name: 'Multiple labels. One independent vision.'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'VIP Women’s Club'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'Playlists for the journey.'})).toBeVisible()
+  await expect(page.getByRole('heading', {name: '4EVER WAVY 🌊'})).toBeVisible()
+  await expect(page.getByRole('heading', {name: 'DEEP IN THE TROPICS'})).toBeVisible()
   await expect(page.getByRole('img', {name: '1912 CA cover artwork'})).toBeVisible()
   const gagaLink = page.getByRole('link', {name: 'Listen to GAGA on Spotify'})
   await expect(gagaLink).toHaveAttribute(
@@ -35,7 +61,17 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
     'https://open.spotify.com/album/3zYQw9LGAltIr14AL8z8cm',
   )
   await expect(page.locator('iframe[title^="Spotify playlist:"]')).toHaveCount(2)
-  await expect(page.getByRole('link', {name: 'Open in Spotify'})).toHaveCount(2)
+  await expect(page.getByRole('link', {name: 'Listen to 4EVER WAVY 🌊 on Spotify'})).toHaveAttribute(
+    'href',
+    'https://open.spotify.com/playlist/6t5KdJynPmNtl5w3Cjge3U',
+  )
+  await expect(page.getByRole('link', {name: 'Listen to DEEP IN THE TROPICS on Spotify'})).toHaveAttribute(
+    'href',
+    'https://open.spotify.com/playlist/2j02x8aOV6aB4Z1TWwrAJ6',
+  )
+  await expect(
+    page.getByText('featured by Habix Music Group', {exact: false}).first(),
+  ).toBeVisible()
 
   const robots = await page.request.get('/robots.txt')
   expect(robots.ok()).toBe(true)

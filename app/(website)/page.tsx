@@ -73,13 +73,17 @@ const disciplines = [
 const playlists = [
   {
     id: "6t5KdJynPmNtl5w3Cjge3U",
-    title: "4ever wavy",
+    title: "4EVER WAVY 🌊",
+    description:
+      "Listen to 4EVER WAVY, a Spotify playlist by FOREVER, featured by Habix Music Group.",
   },
   {
     id: "2j02x8aOV6aB4Z1TWwrAJ6",
-    title: "Deep in the tropics",
+    title: "DEEP IN THE TROPICS",
+    description:
+      "Listen to DEEP IN THE TROPICS, a Spotify playlist by FOREVER, featured by Habix Music Group.",
   },
-];
+]
 
 export default function IndexPage() {
   return (
@@ -89,25 +93,45 @@ export default function IndexPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
-            name: siteName,
-            alternateName: "HMG",
-            url: siteUrl,
-            logo: `${siteUrl}/habix-logo-ink.png`,
-            description:
-              "An independent music and entertainment company based in Nairobi, Kenya, working across recorded music, artist development, merchandising, audiovisual production, and brand partnerships.",
-            foundingDate: "2024",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Nairobi",
-              addressCountry: "KE",
-            },
-            knowsAbout: [
-              "Recorded music",
-              "Artist development",
-              "Music merchandising",
-              "Audiovisual production",
-              "Music brand partnerships",
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: siteName,
+                alternateName: "HMG",
+                url: siteUrl,
+                logo: `${siteUrl}/habix-logo-ink.png`,
+                description:
+                  "An independent music and entertainment company based in Nairobi, Kenya, working across recorded music, artist development, merchandising, audiovisual production, and brand partnerships.",
+                foundingDate: "2024",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Nairobi",
+                  addressCountry: "KE",
+                },
+                knowsAbout: [
+                  "Recorded music",
+                  "Artist development",
+                  "Music merchandising",
+                  "Audiovisual production",
+                  "Music brand partnerships",
+                ],
+              },
+              {
+                "@type": "ItemList",
+                name: "Spotify playlists by FOREVER",
+                description:
+                  "Listen to 4EVER WAVY and DEEP IN THE TROPICS, playlists by FOREVER featured by Habix Music Group.",
+                itemListElement: playlists.map((playlist, index) => ({
+                  "@type": "ListItem",
+                  position: index + 1,
+                  item: {
+                    "@type": "MusicPlaylist",
+                    name: playlist.title,
+                    description: playlist.description,
+                    url: `https://open.spotify.com/playlist/${playlist.id}`,
+                  },
+                })),
+              },
             ],
           }).replace(/</g, "\\u003c"),
         }}
@@ -328,7 +352,9 @@ export default function IndexPage() {
               </h2>
             </div>
             <p className="max-w-md font-serif text-lg leading-relaxed text-gray-600">
-              Press play on selections from FOREVER, streaming now on Spotify.
+              Discover 4EVER WAVY and DEEP IN THE TROPICS, two Spotify
+              playlists by FOREVER featured by Habix Music Group in Nairobi,
+              Kenya.
             </p>
           </div>
 
@@ -340,22 +366,26 @@ export default function IndexPage() {
               >
                 <div className="mb-3 flex items-center justify-between gap-4 px-1">
                   <div>
-                    <h3 className="text-xl font-extrabold capitalize tracking-tight md:text-2xl">
+                    <h3 className="text-xl font-extrabold tracking-tight md:text-2xl">
                       {playlist.title}
                     </h3>
                     <p className="mt-1 text-xs tracking-[0.12em] text-gray-500 uppercase">
-                      Playlist by FOREVER
+                      By FOREVER on Spotify
                     </p>
                   </div>
                   <Link
+                    aria-label={`Listen to ${playlist.title} on Spotify`}
                     className="shrink-0 text-xs font-bold tracking-[0.08em] text-habix-ink uppercase transition hover:text-habix-coral"
                     href={`https://open.spotify.com/playlist/${playlist.id}`}
                     rel="noreferrer"
                     target="_blank"
                   >
-                    Open in Spotify <span aria-hidden="true">↗</span>
+                    Listen on Spotify <span aria-hidden="true">↗</span>
                   </Link>
                 </div>
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-gray-600">
+                  {playlist.description}
+                </p>
                 <iframe
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   className="block h-[352px] w-full rounded-lg border-0"
