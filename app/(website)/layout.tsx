@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import ReleaseArrow from './ReleaseArrow'
 import WalletConnect from './WalletConnect'
 
 export default function WebsiteLayout({children}: LayoutProps<'/'>) {
@@ -69,7 +70,7 @@ export default function WebsiteLayout({children}: LayoutProps<'/'>) {
             />
           </Link>
           <Link className="text-sm font-medium transition hover:text-habix-coral" href="/#labels">
-            Explore our labels <span aria-hidden="true">↗</span>
+            Explore our labels <ReleaseArrow />
           </Link>
         </div>
         <div className="border-t border-white/15 px-4 py-4 text-center text-xs text-white/55">

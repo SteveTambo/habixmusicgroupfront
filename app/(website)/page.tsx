@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteName, siteUrl } from "../site";
+import ReleaseArrow from "./ReleaseArrow";
 
 // Spotify's cross-origin embed needs allow-same-origin for its playback postMessage calls.
 /* oxlint-disable react/iframe-missing-sandbox */
@@ -18,26 +19,6 @@ function VinylIcon({ className }: { className: string }) {
       <circle cx="24" cy="24" r="15" stroke="currentColor" strokeWidth="1.5" />
       <circle cx="24" cy="24" r="10" stroke="currentColor" strokeWidth="1.5" />
       <circle cx="24" cy="24" r="3" fill="currentColor" />
-    </svg>
-  );
-}
-
-function ReleaseArrow() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="inline-block h-3.5 w-3.5 align-[-2px]"
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2 14 12 4m-5.5 0H12v5.5M2 8.5 6.5 4"
-        stroke="currentColor"
-        strokeLinecap="square"
-        strokeLinejoin="miter"
-        strokeWidth="1.5"
-      />
     </svg>
   );
 }

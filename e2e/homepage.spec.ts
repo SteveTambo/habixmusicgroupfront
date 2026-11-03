@@ -45,6 +45,7 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
   await expect(page.getByRole('heading', {name: 'Playlists for the journey.'})).toBeVisible()
   await expect(page.getByRole('heading', {name: '4EVER WAVY 🌊'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'DEEP IN THE TROPICS'})).toBeVisible()
+  await expect(page.getByRole('link', {name: 'Explore our labels'}).locator('svg')).toBeVisible()
   await expect(page.getByRole('img', {name: '1912 CA cover artwork'})).toBeVisible()
   const gagaLink = page.getByRole('link', {name: 'Listen to GAGA on Spotify'})
   await expect(gagaLink).toHaveAttribute(
