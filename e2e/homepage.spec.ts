@@ -39,6 +39,7 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
     ]),
   )
   await expect(page.getByRole('heading', {name: 'Independent music, global ambition.'})).toBeVisible()
+  await expect(page.getByRole('link', {name: 'Explore the group'}).locator('svg')).toBeVisible()
   await expect(page.getByRole('heading', {name: 'Multiple labels. One independent vision.'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'VIP Women’s Club'})).toBeVisible()
   await expect(page.getByRole('heading', {name: 'Playlists for the journey.'})).toBeVisible()

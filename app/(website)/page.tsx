@@ -177,7 +177,7 @@ export default function IndexPage() {
                 className="rounded-full bg-habix-coral px-5 py-3 text-sm font-bold text-black transition hover:bg-white"
                 href="#sound"
               >
-                Explore the group <span aria-hidden="true">↘</span>
+                Explore the group <ReleaseArrow />
               </Link>
               <span className="text-xs tracking-[0.16em] text-white/55 uppercase">
                 Creative independence. Strategic execution.
@@ -208,7 +208,7 @@ export default function IndexPage() {
                 width={3000}
               />
               <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/85 to-transparent px-5 pt-14 pb-5 text-sm font-bold text-white">
-                Listen to GAGA <span aria-hidden="true">↗</span>
+                Listen to GAGA <ReleaseArrow />
               </span>
             </Link>
             <div className="absolute -right-1 bottom-2 rotate-3 rounded-full border border-white/25 bg-habix-ink px-4 py-2 text-xs font-semibold tracking-[0.12em] text-white uppercase md:right-0 md:bottom-4">
@@ -400,7 +400,7 @@ export default function IndexPage() {
                     rel="noreferrer"
                     target="_blank"
                   >
-                    Listen on Spotify <span aria-hidden="true">↗</span>
+                    Listen on Spotify <ReleaseArrow />
                   </Link>
                 </div>
                 <p className="mt-2 max-w-md text-sm leading-relaxed text-gray-600">
@@ -443,7 +443,7 @@ export default function IndexPage() {
               width={3000}
             />
             <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/85 to-transparent px-5 pt-14 pb-5 text-sm font-bold text-white">
-              Listen to Matriarch <span aria-hidden="true">↗</span>
+              Listen to Matriarch <ReleaseArrow />
             </span>
           </Link>
           <div>
@@ -526,7 +526,7 @@ export default function IndexPage() {
               className="inline-flex w-fit items-center gap-3 border-b-2 border-black pb-2 text-lg font-bold transition hover:gap-5"
               href="#labels"
             >
-              Our labels <span aria-hidden="true">↗</span>
+              Our labels <ReleaseArrow />
             </Link>
           </div>
         </div>
