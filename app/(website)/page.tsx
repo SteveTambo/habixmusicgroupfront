@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteName, siteUrl } from "../site";
 import ReleaseArrow from "./ReleaseArrow";
-import StoreEmbed from "./StoreEmbed";
 
 // Spotify's cross-origin embed needs allow-same-origin for its playback postMessage calls.
 /* oxlint-disable react/iframe-missing-sandbox */
@@ -430,11 +429,14 @@ export default function IndexPage() {
               <h3 className="mb-3 px-1 text-xl font-extrabold tracking-tight md:text-2xl">
                 Storefront
               </h3>
-              <StoreEmbed
+              <iframe
+                className="block h-[720px] w-full border-0"
                 height={720}
-                kind="store"
+                loading="lazy"
                 src="https://www.wrhse.top/embed/store/habix-test-2"
+                style={{border: 0, maxWidth: '100%'}}
                 title="WRHSE store"
+                width="100%"
               />
               <Link
                 className="mt-4 inline-flex items-center gap-2 px-1 text-sm font-bold text-habix-ink transition hover:text-habix-coral"
@@ -450,20 +452,15 @@ export default function IndexPage() {
               <h3 className="mb-3 px-1 text-xl font-extrabold tracking-tight md:text-2xl">
                 Featured product
               </h3>
-              <StoreEmbed
-                height={480}
-                kind="product"
+              <iframe
+                className="block h-[560px] w-full border-0"
+                height={560}
+                loading="lazy"
                 src="https://www.wrhse.top/embed/product/632"
+                style={{border: 0, maxWidth: '100%'}}
                 title="WRHSE product"
+                width="100%"
               />
-              <Link
-                className="mt-4 inline-flex items-center gap-2 px-1 text-sm font-bold text-habix-ink transition hover:text-habix-coral"
-                href="https://www.wrhse.top/embed/product/632"
-                rel="noreferrer"
-                target="_blank"
-              >
-                Open product on WRHSE <ReleaseArrow />
-              </Link>
             </article>
           </div>
           <p className="mt-5 max-w-3xl text-sm leading-relaxed text-gray-600">

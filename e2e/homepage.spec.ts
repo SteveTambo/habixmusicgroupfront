@@ -1,23 +1,13 @@
 import {expect, test} from '@playwright/test'
 
 test('homepage content and wallet picker work on desktop and mobile', async ({page}) => {
-  let releaseEmbedResponses = () => {}
-  const embedResponses = new Promise<void>((resolve) => {
-    releaseEmbedResponses = resolve
-  })
-
-  await page.route('https://www.wrhse.top/embed/**', async (route) => {
-    await embedResponses
-    await route.fulfill({
+  await page.route('https://www.wrhse.top/embed/**', (route) =>
+    route.fulfill({
       contentType: 'text/html',
       body: '<!doctype html><html><body>WRHSE embed preview</body></html>',
-    })
-  })
-  await page.goto('/', {waitUntil: 'domcontentloaded'})
-  await page.locator('#stores').scrollIntoViewIfNeeded()
-  await expect(page.locator('output[aria-label="Loading WRHSE store preview"]')).toBeVisible()
-  await expect(page.locator('output[aria-label="Loading WRHSE product preview"]')).toBeVisible()
-  releaseEmbedResponses()
+    }),
+  )
+  await page.goto('/')
 
   await expect(page).toHaveTitle('Habix Music Group | Independent Music Company in Nairobi')
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
@@ -64,6 +54,7 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
   await expect(page.getByRole('link', {name: 'Explore our labels'}).locator('svg')).toBeVisible()
   await expect(page.getByRole('heading', {name: 'Our stores.'})).toBeVisible()
   await expect(page.getByRole('link', {name: 'Stores', exact: true})).toHaveAttribute('href', '/#stores')
+  await expect(page.locator('#stores output[aria-label^="Loading WRHSE"]')).toHaveCount(0)
   await expect(page.locator('iframe[title="WRHSE store"]')).toHaveAttribute(
     'src',
     'https://www.wrhse.top/embed/store/habix-test-2',
@@ -73,7 +64,8 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
     'src',
     'https://www.wrhse.top/embed/product/632',
   )
-  await expect(page.locator('iframe[title="WRHSE product"]')).toHaveAttribute('height', '480')
+  await expect(page.locator('iframe[title="WRHSE product"]')).toHaveAttribute('height', '560')
+  await expect(page.getByRole('link', {name: 'Open product on WRHSE'})).toHaveCount(0)
   const storefrontHeight = await page
     .locator('#stores article')
     .nth(0)
@@ -83,8 +75,6 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
     .nth(1)
     .evaluate((article) => article.getBoundingClientRect().height)
   expect(productCardHeight).toBeLessThan(storefrontHeight)
-  await expect(page.locator('output[aria-label="Loading WRHSE store preview"]')).toHaveCount(0)
-  await expect(page.locator('output[aria-label="Loading WRHSE product preview"]')).toHaveCount(0)
   await expect(page.getByRole('img', {name: '1912 CA cover artwork'})).toBeVisible()
   await expect(page.getByRole('link', {name: 'Listen to 19.12 on Spotify'})).toHaveAttribute(
     'href',
