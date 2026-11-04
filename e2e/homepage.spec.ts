@@ -47,6 +47,10 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
   await expect(page.getByRole('heading', {name: 'DEEP IN THE TROPICS'})).toBeVisible()
   await expect(page.getByRole('link', {name: 'Explore our labels'}).locator('svg')).toBeVisible()
   await expect(page.getByRole('img', {name: '1912 CA cover artwork'})).toBeVisible()
+  await expect(page.getByRole('link', {name: 'Listen to 19.12 on Spotify'})).toHaveAttribute(
+    'href',
+    'https://open.spotify.com/album/1HIBBq4SInYgY2iadN7vTX',
+  )
   const gagaLink = page.getByRole('link', {name: 'Listen to GAGA on Spotify'})
   await expect(gagaLink).toHaveAttribute(
     'href',
@@ -57,7 +61,6 @@ test('homepage content and wallet picker work on desktop and mobile', async ({pa
       name: 'Black-and-white portrait of a musician wearing a VIP Women’s Club shirt',
     }),
   ).toBeVisible()
-  await expect(page.locator('a:has(img[alt="1912 CA cover artwork"])')).toHaveCount(0)
   await expect(page.getByRole('link', {name: 'Listen to Matriarch on Spotify'})).toHaveAttribute(
     'href',
     'https://open.spotify.com/album/3zYQw9LGAltIr14AL8z8cm',

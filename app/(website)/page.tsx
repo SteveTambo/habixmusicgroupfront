@@ -492,17 +492,26 @@ export default function IndexPage() {
             </p>
           </div>
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-end xl:flex-col xl:items-end">
-            <div className="w-full max-w-[360px] overflow-hidden rounded-sm border border-black/10 shadow-xl shadow-black/15">
+            <Link
+              aria-label="Listen to 19.12 on Spotify"
+              className="group relative block w-full max-w-[360px] overflow-hidden rounded-sm border border-black/10 shadow-xl shadow-black/15"
+              href="https://open.spotify.com/album/1HIBBq4SInYgY2iadN7vTX"
+              rel="noreferrer"
+              target="_blank"
+            >
               <Image
                 alt="1912 CA cover artwork"
-                className="aspect-square h-auto w-full object-cover"
+                className="aspect-square h-auto w-full object-cover transition duration-300 group-hover:scale-105"
                 height={3000}
                 quality={90}
                 sizes="(max-width: 640px) 90vw, (max-width: 1280px) 45vw, 360px"
                 src="/1912-ca-cover.jpg"
                 width={3000}
               />
-            </div>
+              <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/85 to-transparent px-4 pt-12 pb-4 text-sm font-bold text-white">
+                Listen to 19.12 <ReleaseArrow />
+              </span>
+            </Link>
             <Link
               className="inline-flex w-fit items-center gap-3 border-b-2 border-black pb-2 text-lg font-bold transition hover:gap-5"
               href="#labels"
