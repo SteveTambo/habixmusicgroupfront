@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteName, siteUrl } from "../site";
 import ReleaseArrow from "./ReleaseArrow";
+import StoreEmbed from "./StoreEmbed";
 
 // Spotify's cross-origin embed needs allow-same-origin for its playback postMessage calls.
 /* oxlint-disable react/iframe-missing-sandbox */
@@ -424,19 +425,16 @@ export default function IndexPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-2">
+          <div className="grid items-start gap-5 lg:grid-cols-2">
             <article className="overflow-hidden rounded-xl border border-black/10 bg-white p-3 shadow-sm md:p-4">
               <h3 className="mb-3 px-1 text-xl font-extrabold tracking-tight md:text-2xl">
                 Storefront
               </h3>
-              <iframe
-                className="block h-[720px] w-full border-0"
+              <StoreEmbed
                 height={720}
-                loading="lazy"
+                kind="store"
                 src="https://www.wrhse.top/embed/store/habix-test-2"
-                style={{border: 0, maxWidth: '100%'}}
                 title="WRHSE store"
-                width="100%"
               />
               <Link
                 className="mt-4 inline-flex items-center gap-2 px-1 text-sm font-bold text-habix-ink transition hover:text-habix-coral"
@@ -452,14 +450,11 @@ export default function IndexPage() {
               <h3 className="mb-3 px-1 text-xl font-extrabold tracking-tight md:text-2xl">
                 Featured product
               </h3>
-              <iframe
-                className="block h-[560px] w-full border-0"
-                height={560}
-                loading="lazy"
+              <StoreEmbed
+                height={480}
+                kind="product"
                 src="https://www.wrhse.top/embed/product/632"
-                style={{border: 0, maxWidth: '100%'}}
                 title="WRHSE product"
-                width="100%"
               />
               <Link
                 className="mt-4 inline-flex items-center gap-2 px-1 text-sm font-bold text-habix-ink transition hover:text-habix-coral"
