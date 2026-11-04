@@ -44,6 +44,12 @@ export default function WebsiteLayout({children}: LayoutProps<'/'>) {
             </Link>
             <Link
               className="text-white/75 transition hover:text-habix-coral"
+              href="/#stores"
+            >
+              Stores
+            </Link>
+            <Link
+              className="text-white/75 transition hover:text-habix-coral"
               href="/#about"
             >
               About

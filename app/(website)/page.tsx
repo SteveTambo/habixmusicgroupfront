@@ -402,6 +402,82 @@ export default function IndexPage() {
       </section>
 
       <section
+        id="stores"
+        aria-labelledby="stores-title"
+        className="scroll-mt-24 bg-white px-4 py-20 md:px-16 md:py-28 lg:px-32"
+      >
+        <div className="mx-auto max-w-[100rem]">
+          <div className="mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-habix-ink uppercase">
+                Shop Habix on WRHSE
+              </p>
+              <h2
+                id="stores-title"
+                className="max-w-3xl text-4xl leading-tight font-extrabold tracking-[-0.05em] md:text-6xl"
+              >
+                Our stores.
+              </h2>
+            </div>
+            <p className="max-w-md font-serif text-lg leading-relaxed text-gray-600">
+              Explore the Habix storefront and featured product, powered by WRHSE.
+            </p>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            <article className="overflow-hidden rounded-xl border border-black/10 bg-white p-3 shadow-sm md:p-4">
+              <h3 className="mb-3 px-1 text-xl font-extrabold tracking-tight md:text-2xl">
+                Storefront
+              </h3>
+              <iframe
+                className="block h-[720px] w-full border-0"
+                height={720}
+                loading="lazy"
+                src="https://www.wrhse.top/embed/store/habix-test-2"
+                style={{border: 0, maxWidth: '100%'}}
+                title="WRHSE store"
+                width="100%"
+              />
+              <Link
+                className="mt-4 inline-flex items-center gap-2 px-1 text-sm font-bold text-habix-ink transition hover:text-habix-coral"
+                href="https://www.wrhse.top/embed/store/habix-test-2"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Open store on WRHSE <ReleaseArrow />
+              </Link>
+            </article>
+
+            <article className="overflow-hidden rounded-xl border border-black/10 bg-white p-3 shadow-sm md:p-4">
+              <h3 className="mb-3 px-1 text-xl font-extrabold tracking-tight md:text-2xl">
+                Featured product
+              </h3>
+              <iframe
+                className="block h-[560px] w-full border-0"
+                height={560}
+                loading="lazy"
+                src="https://www.wrhse.top/embed/product/632"
+                style={{border: 0, maxWidth: '100%'}}
+                title="WRHSE product"
+                width="100%"
+              />
+              <Link
+                className="mt-4 inline-flex items-center gap-2 px-1 text-sm font-bold text-habix-ink transition hover:text-habix-coral"
+                href="https://www.wrhse.top/embed/product/632"
+                rel="noreferrer"
+                target="_blank"
+              >
+                Open product on WRHSE <ReleaseArrow />
+              </Link>
+            </article>
+          </div>
+          <p className="mt-5 max-w-3xl text-sm leading-relaxed text-gray-600">
+            Purchases open on WRHSE, where checkout and wallet approval are completed securely.
+          </p>
+        </div>
+      </section>
+
+      <section
         id="about"
         aria-labelledby="about-title"
         className="scroll-mt-24 bg-[#f5f4f0] px-4 py-20 md:px-16 md:py-28 lg:px-32"
